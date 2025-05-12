@@ -12,11 +12,13 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@iconify-json/carbon": "^1.2.8",
     "valaxy": "0.23.3",
     "valaxy-theme-oceanus": "^0.1.0",
     "valaxy-theme-yun": "0.23.3"
   },
   "devDependencies": {
+    "nodemon": "^3.1.9",
     "typescript": "^5.8.3"
   }
 }

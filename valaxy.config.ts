@@ -119,10 +119,6 @@ export default defineConfig<ThemeConfig>({
         ],
       },
       {
-        text: pkg.version,
-        link: 'https://github.com/WRXinYue/valaxy-theme-oceanus/releases',
-      },
-      {
         text: '关于',
         link: '/about',
       },
