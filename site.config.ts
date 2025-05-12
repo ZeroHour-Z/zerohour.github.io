@@ -5,25 +5,25 @@ export default defineSiteConfig({
   lang: 'zh-CN',
   title: 'Valaxy Theme Yun',
   author: {
-    name: '云游君',
+    name: 'ZeroHour',
   },
   description: 'Valaxy Theme Yun Preview.',
   social: [
-    {
-      name: 'RSS',
-      link: '/atom.xml',
-      icon: 'i-ri-rss-line',
-      color: 'orange',
-    },
-    {
-      name: 'QQ 群 1050458482',
-      link: 'https://qm.qq.com/cgi-bin/qm/qr?k=kZJzggTTCf4SpvEQ8lXWoi5ZjhAx0ILZ&jump_from=webapi',
-      icon: 'i-ri-qq-line',
-      color: '#12B7F5',
-    },
+    // {
+    //   name: 'RSS',
+    //   link: '/atom.xml',
+    //   icon: 'i-ri-rss-line',
+    //   color: 'orange',
+    // },
+    // {
+    //   name: 'QQ 群 1050458482',
+    //   link: 'https://qm.qq.com/cgi-bin/qm/qr?k=kZJzggTTCf4SpvEQ8lXWoi5ZjhAx0ILZ&jump_from=webapi',
+    //   icon: 'i-ri-qq-line',
+    //   color: '#12B7F5',
+    // },
     {
       name: 'GitHub',
-      link: 'https://github.com/YunYouJun',
+      link: 'https://github.com/ZeroHour-Z',
       icon: 'i-ri-github-line',
       color: '#6e5494',
     },
