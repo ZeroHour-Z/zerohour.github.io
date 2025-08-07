@@ -29,5 +29,6 @@ declare module 'vue-router/auto-routes' {
     '/posts/music-sharing': RouteRecordInfo<'/posts/music-sharing', '/posts/music-sharing', Record<never, never>, Record<never, never>>,
     '/posts/valaxy-blog-setup': RouteRecordInfo<'/posts/valaxy-blog-setup', '/posts/valaxy-blog-setup', Record<never, never>, Record<never, never>>,
     '/tags/': RouteRecordInfo<'/tags/', '/tags', Record<never, never>, Record<never, never>>,
+    '/test-beauty': RouteRecordInfo<'/test-beauty', '/test-beauty', Record<never, never>, Record<never, never>>,
   }
 }

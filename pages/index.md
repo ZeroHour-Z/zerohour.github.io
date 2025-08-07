@@ -73,14 +73,18 @@ getStarted:
 ---
 
 <style>
-/* 主页特殊样式 */
+/* 主页特殊样式 - 增强版 */
 .hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4rem 0 !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 60vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .hero-section::before {
@@ -102,17 +106,21 @@ getStarted:
 .hero-content {
   position: relative;
   z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  background: linear-gradient(45deg, #fff, #f0f0f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: glow 2s ease-in-out infinite alternate;
+  font-size: 3.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
+  background: linear-gradient(45deg, #fff, #f0f0f0) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: glow 2s ease-in-out infinite alternate !important;
+  text-shadow: 0 0 30px rgba(255,255,255,0.5) !important;
 }
 
 @keyframes glow {
@@ -121,20 +129,22 @@ getStarted:
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
-  opacity: 0.9;
-  margin-bottom: 2rem;
+  font-size: 1.25rem !important;
+  opacity: 0.9 !important;
+  margin-bottom: 2rem !important;
+  animation: slideUp 1s ease-out 0.5s both !important;
 }
 
 .feature-card {
-  background: white;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  position: relative;
-  overflow: hidden;
+  background: white !important;
+  border-radius: 1rem !important;
+  padding: 2rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin-bottom: 2rem !important;
 }
 
 .feature-card::before {
@@ -146,6 +156,7 @@ getStarted:
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
   transition: left 0.5s;
+  z-index: 1;
 }
 
 .feature-card:hover::before {
@@ -153,94 +164,86 @@ getStarted:
 }
 
 .feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
 }
 
 .feature-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 3rem !important;
+  margin-bottom: 1rem !important;
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  display: block !important;
 }
 
 .article-card {
-  background: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: white !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  margin-bottom: 1.5rem !important;
 }
 
 .article-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
 }
 
 .tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  border-radius: 1rem;
-  font-size: 0.875rem;
-  margin: 0.25rem;
-  transition: all 0.3s ease;
+  display: inline-block !important;
+  padding: 0.25rem 0.75rem !important;
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: white !important;
+  border-radius: 1rem !important;
+  font-size: 0.875rem !important;
+  margin: 0.25rem !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
 }
 
 .tag:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) !important;
+  text-decoration: none !important;
 }
 
 .contact-section {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
-  padding: 3rem 0;
-  text-align: center;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  color: white !important;
+  padding: 3rem 0 !important;
+  text-align: center !important;
+  margin-top: 3rem !important;
 }
 
 .social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+  margin-top: 2rem !important;
+  flex-wrap: wrap !important;
 }
 
 .social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50% !important;
+  color: white !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(10px) !important;
 }
 
 .social-link:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px) scale(1.1);
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  
-  .feature-card {
-    padding: 1.5rem;
-  }
-  
-  .social-links {
-    flex-wrap: wrap;
-  }
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-2px) scale(1.1) !important;
+  text-decoration: none !important;
 }
 
 /* 滚动动画 */
@@ -263,6 +266,7 @@ getStarted:
   width: 100%;
   height: 100%;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .particle {
@@ -290,6 +294,70 @@ getStarted:
     opacity: 0;
   }
 }
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem !important;
+  }
+  
+  .feature-card {
+    padding: 1.5rem !important;
+  }
+  
+  .social-links {
+    flex-wrap: wrap !important;
+  }
+  
+  .hero-content {
+    padding: 0 1rem;
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .feature-card, .article-card {
+    background: #1f2937 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+  }
+  
+  .hero-section {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  }
+}
+
+/* 特殊效果 */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* 确保所有元素都有动画 */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 强制应用样式 */
+.va-content, .oceanus-content {
+  background: transparent !important;
+}
+
+.va-main, .oceanus-main {
+  background: transparent !important;
+}
 </style>
 
 <script>
@@ -309,12 +377,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }, observerOptions);
 
   // 观察所有需要动画的元素
-  document.querySelectorAll('.scroll-animate').forEach(el => {
+  document.querySelectorAll('.scroll-animate, .feature-card, .article-card').forEach(el => {
     observer.observe(el);
   });
 
   // 添加粒子效果
   createParticles();
+  
+  // 添加浮动动画
+  addFloatingAnimation();
 });
 
 function createParticles() {
@@ -322,7 +393,7 @@ function createParticles() {
   particlesContainer.className = 'particles';
   document.body.appendChild(particlesContainer);
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 30; i++) {
     const particle = document.createElement('div');
     particle.className = 'particle';
     particle.style.left = Math.random() * 100 + '%';
@@ -331,4 +402,39 @@ function createParticles() {
     particlesContainer.appendChild(particle);
   }
 }
+
+function addFloatingAnimation() {
+  // 为卡片添加浮动动画
+  const cards = document.querySelectorAll('.feature-card, .article-card');
+  cards.forEach((card, index) => {
+    card.style.animationDelay = (index * 0.1) + 's';
+    card.classList.add('floating');
+  });
+}
+
+// 添加鼠标跟随效果
+document.addEventListener('mousemove', function(e) {
+  const cursor = document.querySelector('.cursor-follower');
+  if (!cursor) {
+    const newCursor = document.createElement('div');
+    newCursor.className = 'cursor-follower';
+    newCursor.style.cssText = `
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.1s ease;
+      opacity: 0.7;
+    `;
+    document.body.appendChild(newCursor);
+  }
+  
+  if (cursor) {
+    cursor.style.left = e.clientX - 10 + 'px';
+    cursor.style.top = e.clientY - 10 + 'px';
+  }
+});
 </script>
