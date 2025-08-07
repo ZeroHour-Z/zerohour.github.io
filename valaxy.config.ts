@@ -18,12 +18,8 @@ export default defineConfig<ThemeConfig>({
         link: '/',
       },
       {
-        text: '博客',
-        link: '/posts',
-      },
-      {
         text: '笔记',
-        link: '/notes',
+        link: '/posts',
       },
       {
         text: '分类',
@@ -32,10 +28,6 @@ export default defineConfig<ThemeConfig>({
       {
         text: '标签',
         link: '/tags',
-      },
-      {
-        text: '归档',
-        link: '/archives',
       },
       {
         text: '关于',
@@ -57,7 +49,8 @@ export default defineConfig<ThemeConfig>({
       motto: '记录生活，分享技术，探索世界',
       img: {
         light: 'https://common.s3.bitiful.net/oceanus/wallhaven-2y7yz6.jpg',
-        dark: 'https://common.s3.bitiful.net/oceanus/wallhaven-2evj3y.jpg',
+        dark: 'https://common.s3.bitiful.net/oceanus/wallhaven-2y7yz6.jpg',
+        //dark: 'https://common.s3.bitiful.net/oceanus/wallhaven-2evj3y.jpg',
       },
     },
 
