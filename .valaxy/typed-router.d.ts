@@ -38,6 +38,7 @@ declare module 'vue-router/auto-routes' {
     '/links/': RouteRecordInfo<'/links/', '/links', Record<never, never>, Record<never, never>>,
     '/notes/': RouteRecordInfo<'/notes/', '/notes', Record<never, never>, Record<never, never>>,
     '/posts/hello-valaxy': RouteRecordInfo<'/posts/hello-valaxy', '/posts/hello-valaxy', Record<never, never>, Record<never, never>>,
+    '/posts/hello-world': RouteRecordInfo<'/posts/hello-world', '/posts/hello-world', Record<never, never>, Record<never, never>>,
     '/reference/': RouteRecordInfo<'/reference/', '/reference', Record<never, never>, Record<never, never>>,
     '/reference/frontmatter-config/': RouteRecordInfo<'/reference/frontmatter-config/', '/reference/frontmatter-config', Record<never, never>, Record<never, never>>,
     '/reference/frontmatter-config/features': RouteRecordInfo<'/reference/frontmatter-config/features', '/reference/frontmatter-config/features', Record<never, never>, Record<never, never>>,
