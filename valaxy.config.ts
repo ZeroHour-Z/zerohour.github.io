@@ -36,12 +36,12 @@ export default defineConfig<ThemeConfig>({
     ],
 
     navTools: [
-      ['togglTheme', 'toggleLocale'],
+      ['search'],
+      ['togglTheme'],
       [{
         icon: 'i-ri-github-fill',
         link: 'https://github.com/ZeroHour-Z',
       }],
-      ['search'],
     ],
 
     hero: {

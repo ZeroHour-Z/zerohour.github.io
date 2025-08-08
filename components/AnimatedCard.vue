@@ -103,14 +103,13 @@ onMounted(() => {
 }
 
 /* 深色模式支持 */
-@media (prefers-color-scheme: dark) {
-  .animated-card {
-    background: #1f2937;
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .card-glow {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-  }
+html.dark .animated-card {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+html.dark .card-glow {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
 }
 </style> 

@@ -2,12 +2,14 @@
 title: 使用Valaxy搭建个人博客
 date: 2024-08-07
 categories:
-  - 技术
+  - 学习笔记
+  - 技术分享
 tags:
   - Valaxy
-  - 博客
-  - 前端
+  - 技术
   - 教程
+  - 前端
+  - 博客
 ---
 
 # 使用Valaxy搭建个人博客

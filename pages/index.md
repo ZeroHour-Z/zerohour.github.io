@@ -41,11 +41,19 @@ featuredArticles:
     - title: 欢迎来到我的博客
       tags: ["介绍", "开始"]
       path: /posts/hello-world
-      excerpt: 这是我的第一篇博客文章，简单介绍一下我自己和这个博客的定位。
-    - title: 关于我
-      tags: ["个人", "介绍"]
-      path: /about
-      excerpt: 了解更多关于我的信息，包括我的经历、技能和联系方式。
+      excerpt: 这是我的第一篇博客文章，简单介绍一下我自己和这个博客的定位，以及我为什么要开始写博客。
+    - title: 使用Valaxy搭建个人博客
+      tags: ["技术", "教程", "Valaxy"]
+      path: /posts/valaxy-blog-setup
+      excerpt: 详细介绍如何使用Valaxy框架搭建个人博客，包括环境准备、项目创建、配置说明和部署方法。
+    - title: 生活中的小确幸
+      tags: ["生活", "感悟", "思考"]
+      path: /posts/life-reflection
+      excerpt: 分享生活中的美好瞬间，包括清晨的阳光、一杯咖啡的时光、阅读的乐趣和音乐的力量。
+    - title: 我的音乐收藏
+      tags: ["音乐", "分享", "推荐"]
+      path: /posts/music-sharing
+      excerpt: 分享我喜欢的音乐和歌手，包括不同心情下的音乐选择，以及音乐对我的影响。
 
 contributors:
   subtitle: 联系方式
@@ -315,16 +323,30 @@ getStarted:
 }
 
 /* 深色模式支持 */
-@media (prefers-color-scheme: dark) {
-  .feature-card, .article-card {
-    background: #1f2937 !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-    color: white !important;
-  }
-  
-  .hero-section {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
-  }
+html.dark .feature-card, 
+html.dark .article-card {
+  background: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+html.dark .hero-section {
+  background: var(--bg-gradient) !important;
+}
+
+html.dark .hero-title,
+html.dark .hero-subtitle {
+  color: var(--text-primary) !important;
+}
+
+html.dark .feature-card h3,
+html.dark .article-card h3 {
+  color: var(--text-primary) !important;
+}
+
+html.dark .feature-card p,
+html.dark .article-card p {
+  color: var(--text-secondary) !important;
 }
 
 /* 特殊效果 */
