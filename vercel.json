@@ -1,6 +1,7 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".vuepress/dist",
-  "installCommand": "npm install",
-  "framework": "vuepress"
+  "installCommand": "npm install --legacy-peer-deps",
+  "framework": "vuepress",
+  "installCommand": "npm install --legacy-peer-deps"
 } 
