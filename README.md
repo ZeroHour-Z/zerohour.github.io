@@ -1,49 +1,40 @@
 ---
+# 是否为首页
 home: true
+
+# 首页模块配置
 modules:
-  - BannerBrand
-  - Blog
-  - MdContent
-  - Footer
+  - BannerBrand   # 横幅品牌模块
+  - Blog          # 博客模块
+  - MdContent     # Markdown内容模块
+  # - Footer        # 页脚模块
+
+# BannerBrand模块配置
 bannerBrand:
-  bgImage: '/bg.svg'
-  title: vuepress-reco
-  description: 一款简洁的 vuepress 博客 & 文档 主题。
-  tagline: vuepress-theme-reco 2.0 继续坚持简洁的风格，所有功能开箱即用，首页模块化组装，使用 tailwindcss 书写样式，将 Vite 作为默认编译器。你只需要负责内容创作，其他请交给我。
+  bgImage: '/bg.svg'   # 背景图片
+  title: ZeroHour's Site   # 标题
+  titleStyle: "font-size: 60px;"   # 可自定义字号，例如40px
+  # description:         # 描述（可选）
+  tagline: 亦余心之所善兮 虽九死其犹未悔   # 标语
   buttons:
-    - { text: Guide, link: '/docs/guide/introduce' }
-    - { text: Default Style, link: '/docs/style-default-api/introduce', type: 'plain' }
+    - { text: Guide, link: '/blogs/other/guide.html', type: 'primary', style: 'color: #fff; background-color: #42b983;' }  # 通过style字段自定义按钮颜色，例如设置文字颜色和背景色
+    - { text: Default Style, link: '/docs/style-default-api/introduce', type: 'plain' }  # 默认样式按钮
   socialLinks:
-    - { icon: 'LogoGithub', link: 'https://github.com/vuepress-reco/vuepress-theme-reco' }
+    - { icon: 'LogoGithub', link: 'https://github.com/ZeroHour-Z' }   # 社交链接（GitHub）
+    - { icon: 'LogoNeteaseCloudMusic', link: 'https://music.163.com/#/user/home?id=12345' }
+
+
+# 博客模块配置
 blog:
   socialLinks:
-    - { icon: 'LogoGithub', link: 'https://github.com/recoluan' }
+    - { icon: 'LogoGithub', link: 'https://github.com/ZeroHour' }   # 博客社交链接（GitHub）
+   
+# 首页是否显示标题
 isShowTitleInHome: true
+
+# 首页操作按钮文本
 actionText: About
+
+# 首页操作按钮链接
 actionLink: /views/other/about
 ---
-
-## 快速开始
-
-**npx**
-
-```bash
-# 初始化，并选择 2.x
-npx @vuepress-reco/theme-cli init
-```
-
-**npm**
-
-```bash
-# 初始化，并选择 2.x
-npm install @vuepress-reco/theme-cli@1.0.7 -g
-theme-cli init
-```
-
-**yarn**
-
-```bash
-# 初始化，并选择 2.x
-yarn global add @vuepress-reco/theme-cli@1.0.7
-theme-cli init
-```
