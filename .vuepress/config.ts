@@ -10,7 +10,7 @@ export default defineUserConfig({
   bundler: viteBundler(),
   // bundler: webpackBundler(),
   theme: recoTheme({
-    logo: "/ZeroHour_G_logo.svg",
+    logo: "/ZeroHour_F_logo.svg",
     author: "ZeroHour",
     authorAvatar: "/github.jpg",
     primaryColor: 'rgb(138, 245, 255)', // 自定义主题主色调
