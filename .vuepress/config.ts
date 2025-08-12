@@ -14,7 +14,7 @@ export default defineUserConfig({
     author: "ZeroHour",
     authorAvatar: "/github.jpg",
     primaryColor: 'rgb(138, 245, 255)', // 自定义主题主色调
-    colorMode: 'light', // 可选值: 'auto', 'light', 'dark'
+    colorMode: 'dark', // 可选值: 'auto', 'light', 'dark'
     colorModeSwitch: true, // 显示模式切换按钮
     docsRepo: "https://github.com/ZeroHour-Z",
     docsBranch: "main",
