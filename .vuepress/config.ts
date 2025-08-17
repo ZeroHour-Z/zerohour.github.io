@@ -37,7 +37,7 @@ export default defineUserConfig({
     navbar: [
       { text: "Home", link: "/" },
       { text: "Blog", link: "/posts.html" },
-      { text: "Categories", link: "/categories/category1/1.html" },
+      { text: "Categories", link: "/categories/life/1.html" },
       { text: "Tags", link: "/tags/tag1/1.html" },
       // {
       //   text: "Docs",

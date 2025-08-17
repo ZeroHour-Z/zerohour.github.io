@@ -11,10 +11,10 @@ modules:
 
 # BannerBrand模块配置
 bannerBrand:
-  bgImage: '/bg.svg'   # 背景图片
-  title: ZeroHour's Site   # 标题
-  titleStyle: "font-size: 60px;"   # 可自定义字号，例如40px
-  # description:         # 描述（可选）
+  bgImage: '/bg.svg'
+  title: ZeroHour's Site
+  titleStyle: "font-size: 60px;" 
+  # description:
   tagline: 亦余心之所善兮 虽九死其犹未悔   # 标语
   buttons:
     - { text: Guide, link: '/blogs/other/guide.html', type: 'primary', style: 'color: #fff; background-color: #42b983;' }  # 通过style字段自定义按钮颜色，例如设置文字颜色和背景色
