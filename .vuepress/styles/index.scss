@@ -1,0 +1,7 @@
+// 全局样式入口，VuePress 2.x 会自动加载本文件
+@media (min-width: 768px) {
+  .banner-brand__wrapper .banner-brand__content .title {
+    font-size: 150px !important;
+    line-height: 1.1 !important;
+  }
+}

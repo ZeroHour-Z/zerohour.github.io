@@ -3,12 +3,19 @@ import recoTheme from "vuepress-theme-reco";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { webpackBundler } from '@vuepress/bundler-webpack'
 import { copyCodePlugin } from '@vuepress/plugin-copy-code'
+import { path } from "vuepress/utils";
 
 export default defineUserConfig({
   title: "ZeroHour's Site",
-  description: "Just playing around",
+  description: "Welcome to ZeroHour's Site",
   bundler: viteBundler(),
   // bundler: webpackBundler(),
+  head: [
+      ['link', { rel: 'icon', href: 'ZeroHour_G_logo.svg' }]
+  ],
+  alias: {
+    '@styles': path.resolve(__dirname, 'styles/index.scss'),
+  },
   theme: recoTheme({
     logo: "/ZeroHour_F_logo.svg",
     author: "ZeroHour",
@@ -17,8 +24,8 @@ export default defineUserConfig({
     colorMode: 'dark', // 可选值: 'auto', 'light', 'dark'
     colorModeSwitch: true, // 显示模式切换按钮
     docsRepo: "https://github.com/ZeroHour-Z",
-    docsBranch: "main",
-    docsDir: "/docs",
+    // docsBranch: "main",
+    // docsDir: "/docs",
     lastUpdatedText: "", 
     // series 为原 sidebar
 
@@ -35,10 +42,9 @@ export default defineUserConfig({
       ],
     },
     navbar: [
-      { text: "Home", link: "/" },
-      { text: "Blog", link: "/posts.html" },
-      { text: "Categories", link: "/categories/life/1.html" },
-      { text: "Tags", link: "/tags/tag1/1.html" },
+      { text: "Home", link: "/", icon: "IconHome" },
+      { text: "Blog", link: "/posts.html", icon: "IconBlog" },
+      { text: "Categories", link: "/categories/life/1.html", icon: "IconCategory" },
       // {
       //   text: "Docs",
       //   children: [
@@ -46,8 +52,8 @@ export default defineUserConfig({
       //     { text: "vuepress-theme-reco", link: "/blogs/other/guide" },
       //   ],
       // },
-      { text: "About", link: "/about/about.html" },
-      { text: "Link", link: "/friendship-link.html" },
+      { text: "About", link: "/about/about.html", icon: "IconUser" },
+      // { text: "Link", link: "/friendship-link.html" },
     ],
     // bulletin: {
     //   body: [
@@ -104,19 +110,6 @@ export default defineUserConfig({
     //   ],
     // },
 
-    commentConfig: {
-      type: 'valine',
-      // options 与 1.x 的 valineConfig 配置一致
-      options: {
-        appId: 'xxx',
-        appKey: 'xxx',
-        placeholder: '填写邮箱可以收到回复提醒哦！',
-        verify: true, // 验证码服务
-        notify: true,
-        recordIP: true,
-        hideComments: true // 隐藏评论
-      },
-    },
   }),
   // debug: true,
 });

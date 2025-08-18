@@ -1,0 +1,29 @@
+body section.banner-brand__wrapper div.banner-brand__content h1.title {
+  font-size: 150px !important;
+}
+section.banner-brand__wrapper div.banner-brand__content h1.title {
+  font-size: 150px !important;
+}
+.banner-brand__wrapper .banner-brand__content h1.title {
+  font-size: 150px !important;
+  line-height: 1.1 !important;
+}
+
+@media (min-width: 768px) {
+  .banner-brand__wrapper .banner-brand__content .title {
+    font-size: 150px !important;
+    line-height: 1.1 !important;
+  }
+}
+.banner-brand__wrapper .banner-brand__content .title {
+  font-size: 150px !important;
+  line-height: 1.1 !important;
+}
+.banner-brand__content .title {
+  font-size: 150px !important;
+  line-height: 1.1 !important;
+}
+.home-wrapper .title {
+  font-size: 150px !important;
+  line-height: 1.1 !important;
+}
