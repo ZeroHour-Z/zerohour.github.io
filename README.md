@@ -11,7 +11,7 @@ modules:
 
 # BannerBrand模块配置
 bannerBrand:
-  bgImage: '/bg.svg'
+  bgImage: '/bg1.jpg'
   title: ZeroHour's Site
   titleStyle: "font-size: 100px;" 
   # description:

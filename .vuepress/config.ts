@@ -14,7 +14,7 @@ export default defineUserConfig({
       ['link', { rel: 'icon', href: 'ZeroHour_G_logo.svg' }]
   ],
   alias: {
-    '@styles': path.resolve(__dirname, 'styles/index.scss'),
+    '@styles': path.resolve(__dirname, 'styles/index.scss'),  
   },
   theme: recoTheme({
     logo: "/ZeroHour_F_logo.svg",
@@ -44,7 +44,7 @@ export default defineUserConfig({
     navbar: [
       { text: "Home", link: "/", icon: "IconHome" },
       { text: "Blog", link: "/posts.html", icon: "IconBlog" },
-      { text: "Categories", link: "/categories/life/1.html", icon: "IconCategory" },
+      { text: "Categories", link: "/categories/life/1.html", icon: "IconTag" },
       // {
       //   text: "Docs",
       //   children: [
