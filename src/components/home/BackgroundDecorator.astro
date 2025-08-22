@@ -1,0 +1,225 @@
+﻿---
+// 背景装饰组件
+// 支持多种背景样式：渐变、纯色、图片、动态效果
+
+interface Props {
+  type?: 'gradient' | 'solid' | 'image' | 'animated' | 'none'
+  color1?: string
+  color2?: string
+  imageUrl?: string
+  opacity?: number
+}
+
+const { 
+  type = 'gradient', 
+  color1 = '#667eea', 
+  color2 = '#764ba2', 
+  imageUrl = '/path/to/background.jpg',
+  opacity = 0.1
+} = Astro.props
+---
+
+{type === 'gradient' && (
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0" style={`background: linear-gradient(135deg, ${color1}20, ${color2}20);`}></div>
+    <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+    <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+  </div>
+)}
+
+{type === 'solid' && (
+  <div class="fixed inset-0 -z-10" style={`background-color: ${color1}; opacity: ${opacity};`}></div>
+)}
+
+{type === 'image' && (
+  <div 
+    class="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat" 
+    style={`background-image: url(${imageUrl}); opacity: ${opacity};`}
+  ></div>
+)}
+
+{type === 'animated' && (
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <!-- 动态粒子效果 -->
+    <div class="absolute inset-0">
+      {Array.from({ length: 50 }).map(() => (
+        <div 
+          class={`absolute rounded-full animate-particle-float`}
+          style={`
+            left: ${Math.random() * 100}%; 
+            top: ${Math.random() * 100}%; 
+            width: ${Math.random() * 4 + 1}px; 
+            height: ${Math.random() * 4 + 1}px;
+            background-color: rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1});
+            animation-delay: ${Math.random() * 3}s;
+            animation-duration: ${Math.random() * 4 + 3}s;
+            transform: scale(${Math.random() * 0.5 + 0.8}) rotate(${Math.random() * 360}deg);
+            filter: blur(${Math.random() * 0.5}px);
+          `}
+        ></div>
+      ))}
+      
+      {/* 添加一些彩色粒子 */}
+      {Array.from({ length: 15 }).map(() => (
+        <div 
+          class={`absolute rounded-full animate-particle-float`}
+          style={`
+            left: ${Math.random() * 100}%; 
+            top: ${Math.random() * 100}%; 
+            width: ${Math.random() * 3 + 2}px; 
+            height: ${Math.random() * 3 + 2}px;
+            background: linear-gradient(45deg, 
+              rgba(147, 197, 253, ${Math.random() * 0.4 + 0.2}), 
+              rgba(196, 181, 253, ${Math.random() * 0.4 + 0.2})
+            );
+            animation-delay: ${Math.random() * 4}s;
+            animation-duration: ${Math.random() * 5 + 4}s;
+            transform: scale(${Math.random() * 0.6 + 0.9}) rotate(${Math.random() * 360}deg);
+            filter: blur(${Math.random() * 0.3}px);
+          `}
+        ></div>
+      ))}
+    </div>
+    
+    <!-- 动态波浪效果 -->
+    <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-blue-500/20 to-transparent"></div>
+    
+    <!-- 浮动的几何图形 -->
+    <div class="absolute top-20 right-20 w-16 h-16 border-2 border-blue-400/30 rounded-lg animate-spin-slow"></div>
+    <div class="absolute top-40 left-20 w-12 h-12 bg-purple-400/20 rounded-full animate-circle-float"></div>
+    <div class="absolute bottom-40 right-40 w-20 h-20 border border-pink-400/30 transform rotate-45 animate-square-rotate"></div>
+    
+    <!-- 渐变光晕 -->
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/10 via-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
+  </div>
+)}
+
+<style>
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* 正方形旋转动画 */
+  @keyframes square-rotate {
+    0% {
+      transform: rotate(45deg) scale(1);
+    }
+    25% {
+      transform: rotate(135deg) scale(1.05);
+    }
+    50% {
+      transform: rotate(225deg) scale(0.95);
+    }
+    75% {
+      transform: rotate(315deg) scale(1.02);
+    }
+    100% {
+      transform: rotate(405deg) scale(1);
+    }
+  }
+  
+  .animate-square-rotate {
+    animation: square-rotate 12s ease-in-out infinite;
+  }
+  
+  /* 圆形轻微移动动画 */
+  @keyframes circle-float {
+    0% {
+      transform: translateY(0px) scale(1);
+    }
+    25% {
+      transform: translateY(-8px) scale(1.02);
+    }
+    50% {
+      transform: translateY(-15px) scale(0.98);
+    }
+    75% {
+      transform: translateY(-8px) scale(1.01);
+    }
+    100% {
+      transform: translateY(0px) scale(1);
+    }
+  }
+  
+  .animate-circle-float {
+    animation: circle-float 8s ease-in-out infinite;
+  }
+  
+  /* 粒子浮动动画 */
+  @keyframes particle-float {
+    0% {
+      transform: translateY(0px) scale(1);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translateY(-10px) scale(1.1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-20px) scale(0.9);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translateY(-10px) scale(1.05);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(0px) scale(1);
+      opacity: 0.3;
+    }
+  }
+  
+  .animate-particle-float {
+    animation: particle-float 6s ease-in-out infinite;
+  }
+  
+  /* 为不同粒子添加不同的动画延迟和持续时间 */
+  .animate-particle-float:nth-child(odd) {
+    animation-duration: 8s;
+  }
+  
+  .animate-particle-float:nth-child(even) {
+    animation-duration: 5s;
+  }
+  
+  .animate-particle-float:nth-child(3n) {
+    animation-duration: 7s;
+  }
+</style>
