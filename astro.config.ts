@@ -25,7 +25,7 @@ import config from './src/site.config.ts'
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
-  // site: 'https://astro-pure.js.org', // 注释掉错误的站点URL
+  site: 'https://zerohour.github.io', // 使用您的GitHub Pages域名
   // base: '/docs',
   trailingSlash: 'never',
 
