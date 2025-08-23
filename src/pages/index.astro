@@ -12,9 +12,9 @@ import SkillLayout from '@/components/home/SkillLayout.astro'
 import avatar from '@/assets/github.jpg'
 import config from '@/site-config'
 
-const languages = ['Html', 'JavaScript', 'CSS', 'Shell']
-const frontend = ['TypeScript', 'Vite', 'Webpack', 'Astro']
-const backend = ['Vercel', 'Waline']
+const languages = ['Python', 'C++', 'C', 'CSS', 'JavaScript', 'Shell']
+const frontend = ['Astro', 'Vue', 'TailwindCSS']
+const backend = ['Vercel', 'Git', 'Linux']
 
 const MAX_POSTS = 10
 const allPosts = await getBlogCollection()
@@ -207,13 +207,13 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           date='July 2024'
           href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
         />
-      </Section>
+      </Section> -->
 
       <Section title='Skills'>
         <SkillLayout title='Languages' skills={languages} />
         <SkillLayout title='Frontend' skills={frontend} />
         <SkillLayout title='Backend' skills={backend} />
-      </Section> -->
+      </Section>
     </div>
     <Quote class='mt-12' />
   </main>

@@ -38,51 +38,29 @@ const headings = [
     <Icon class='size-5' name='receive-money' slot='before' />
   </Button>
 
-  <h2 id='theme'>Theme</h2>
-  <ProjectSection
-    projects={[
-      {
-        name: '🍭 Astro-theme-pure',
-        description: 'A simple, clean but powerful blog theme build by astro.',
-        links: [
-          { type: 'github', href: 'https://github.com/cworld1/astro-theme-pure' },
-          { type: 'site', href: 'https://github.com/cworld1/astro-theme-pure' },
-          {
-            type: 'doc',
-            href: 'https://github.com/cworld1/astro-theme-pure/blob/main/src/content/blog/customize/index.md'
-          }
-        ]
-      }
-    ]}
-  />
-
   <h2 id='programs'>Programs</h2>
   <ProjectSection
     projects={[
       {
-        name: '📒 Notie',
+        name: 'raspberry',
         description:
-          'Android note App complies with Material You specifications, developed using Java',
+          'based on raspberry pi 5, detect the circle, the cross and different colors with opencv and yolo',
         links: [
-          { type: 'github', href: 'https://github.com/cworld1/notie' },
-          {
-            type: 'release',
-            href: 'https://github.com/cworld1/notie/releases'
-          }
+          { type: 'github', href: 'https://github.com/ZeroHour-Z/raspberry' },
         ]
       },
-      {
-        name: '💄 PKU Art',
-        description: 'A script to beautify pku course website',
-        links: [
-          { type: 'github', href: 'https://github.com/zhuozhiyongde/pku-art' },
-          { type: 'site', href: 'https://github.com/zhuozhiyongde/pku-art' },
-          { type: 'doc', href: 'https://docs.arthals.ink/docs/pku-art' }
-        ]
-      }
+      // {
+      //   name: '💄 PKU Art',
+      //   description: 'A script to beautify pku course website',
+      //   links: [
+      //     { type: 'github', href: 'https://github.com/zhuozhiyongde/pku-art' },
+      //     { type: 'site', href: 'https://github.com/zhuozhiyongde/pku-art' },
+      //     { type: 'doc', href: 'https://docs.arthals.ink/docs/pku-art' }
+      //   ]
+      // }
     ]}
   />
-  <Collapse title='Some old projects'>
+  <!-- <Collapse title='Some old projects'>
     <ProjectSection
       projects={[
         {
@@ -100,9 +78,9 @@ const headings = [
         }
       ]}
     />
-  </Collapse>
+  </Collapse> -->
 
-  <h2 id='learnings'>Learnings</h2>
+  <!-- <h2 id='learnings'>Learnings</h2>
   <ProjectSection
     class='my-2'
     projects={[
@@ -122,9 +100,9 @@ const headings = [
         ]
       }
     ]}
-  />
+  /> -->
 
-  <h2 id='others'>Others</h2>
+  <!-- <h2 id='others'>Others</h2>
   <ProjectSection
     projects={[
       {
@@ -138,17 +116,17 @@ const headings = [
         links: [{ type: 'github', href: 'https://github.com/zhuozhiyongde' }]
       }
     ]}
-  />
+  /> -->
 
   <!-- gpg signature -->
-  <h2 id='gpg-signature'>GPG Signature</h2>
+  <!-- <h2 id='gpg-signature'>GPG Signature</h2>
   <p>
     You can verify the authenticity of the files I signed by checking the GPG signature. My GPG key
     is <code>114514</code>, and you can find it on the opengpg key servers or download from it.
   </p>
   <Button href='https://keys.openpgp.org/search?q=114514' title='Checkout my key' target='_blank'>
     <KeyIcon class='size-5' slot='before' />
-  </Button>
+  </Button> -->
 
   <!-- sponsorship -->
   <h2 id='sponsorship'>Sponsorship</h2>
@@ -159,15 +137,12 @@ const headings = [
       { name: 'Alipay', icon: 'alipay', image: alipay }
     ]}
   />
-  <p>Thanks to the following sponsors:</p>
-  <Sponsors
+  <!-- <p>Thanks to the following sponsors:</p> -->
+  <!-- <Sponsors
     sponsors={[
       { name: 'C*a（酷安@暴走の蜗牛）', amount: '2.00', date: '2019-07-02' },
-      { name: '华雄(QQ：1300****71)', amount: '5.00', date: '2019-12-30' },
-      { name: '◌(QQ：1934****45)', amount: '3.00', date: '2019-12-30' },
-      { name: 'Anonymous', amount: '20.00', date: '2022-04-06' }
     ]}
-  />
+  /> -->
 </PageLayout>
 
 <style>
