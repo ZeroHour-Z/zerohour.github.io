@@ -13,6 +13,17 @@
 }
 html {
   font-family: 'Satoshi', sans-serif;
+  zoom: 1.3;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 确保缩放后的页面布局正确 */
+* {
+  box-sizing: border-box;
 }
 
 /* Theme */

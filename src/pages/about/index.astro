@@ -1,5 +1,5 @@
 ---
-import { Button, Collapse, Spoiler, Timeline } from 'astro-pure/user'
+import { Button, Spoiler } from 'astro-pure/user'
 import PageLayout from '@/layouts/CommonPage.astro'
 import Substats from '@/components/about/Substats.astro'
 import ToolSection from '@/components/about/ToolSection.astro'
@@ -8,8 +8,6 @@ const headings = [
   { depth: 2, slug: 'hobbies', text: 'Hobbies' },
   { depth: 2, slug: 'tools', text: 'Tools' },
   { depth: 2, slug: 'social-networks', text: 'Social Networks' },
-  { depth: 2, slug: 'gossips', text: 'Gossips' },
-  { depth: 2, slug: 'about-blog', text: 'About Blog' }
 ]
 ---
 
@@ -30,6 +28,8 @@ const headings = [
     <li>Web Development</li>
     <li>DJ</li>
     <li>Computer Science</li>
+    <li>AI</li>
+    <li>Sound Design</li>
   </ul>
 
   {/* tools */}
@@ -37,19 +37,13 @@ const headings = [
   <p>Current support tools as follow:</p>
   <ToolSection
     class='mb-5'
-    title='Development'
+    title='Tools'
     tools={[
       {
         name: 'VS Code',
         description: 'IDE',
         href: 'https://code.visualstudio.com/',
         icon: import('@/assets/tools/vscode.svg?raw')
-      },
-      {
-        name: 'Neovim',
-        description: 'IDE',
-        href: 'https://neovim.io/',
-        icon: import('@/assets/tools/neovim.svg?raw')
       },
       {
         name: 'Sublime Text',
@@ -105,19 +99,27 @@ const headings = [
         link: 'https://space.bilibili.com/499513500',
         text: 'followers',
         api: 'bilibili/499513500'
+      },
+      {
+        platform: 'X',
+        icon: 'x',
+        link: 'https://x.com/ZeroHour0S',
+        text: 'followers',
+        // api: 'x/ZeroHour0S'
+        count: 24
       }
     ]}
   />
 
-  {/* gossips */}
+  <!-- {/* gossips */}
   <h2 id='gossips'>Gossips</h2>
   <Collapse title='Lorem ipsum'>
     Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione indoctum
     dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel, at eum oratio
     possit voluptatum.
-  </Collapse>
+  </Collapse> -->
 
-  {/* about-blog */}
+  <!-- {/* about-blog */}
   <h2 id='about-blog'>About Blog</h2>
   <p>Website history:</p>
   <Timeline
@@ -156,7 +158,7 @@ const headings = [
     <li>
       CI/CD: <a href='https://vercel.com/workflow' target='_blank'>Vercel Workflow</a>
     </li>
-    <!-- <li>Resources speedup: <a href='https://cdn.cbd.int/' target='_blank'>CBD CDN</a></li> -->
+    <li>Resources speedup: <a href='https://cdn.cbd.int/' target='_blank'>CBD CDN</a></li>
     <li>Comment system: <a href='https://waline.js.org' target='_blank'>Waline</a></li>
     <li>
       Visits: <a href='https://supabase.com/' target='_blank'>Supabase</a> +
@@ -167,5 +169,5 @@ const headings = [
         >Substats</a
       >
     </li>
-  </ul>
+  </ul> -->
 </PageLayout>
