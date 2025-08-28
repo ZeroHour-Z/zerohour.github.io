@@ -170,6 +170,52 @@ head: [
 
 > 静态资源（如图标）放在 `public/`，源码图片可置于 `src/assets/`；修改路径后注意与配置同步。
 
+## 最近优化内容
+
+### 项目卡片组件优化 (ProjectCard.astro)
+
+**深色模式适配**
+- 自动检测主题：浅色模式保持明亮，深色模式自动变暗
+- 深色叠加层：`bg-black/5 dark:bg-black/20`
+- 悬停效果：`group-hover:bg-black/10 dark:group-hover:bg-black/55`
+
+**移动端响应式**
+- 文字定位：底部固定定位，避免移动端布局错乱
+- 渐变覆盖：移动端仅覆盖 35%，桌面端 40%
+- 字体大小：移动端 `text-sm` + `text-xs`，桌面端 `text-xl` + `text-base`
+
+**交互体验**
+- 悬停显示：默认隐藏文字，悬停时淡入显示
+- 无边框设计：移除边框，卡片完全贴合
+- 统一颜色：标题和副标题使用相同 `text-muted-foreground`
+
+**样式配置**
+```ts
+// 深色叠加层配置
+<div class='absolute inset-0 bg-black/5 dark:bg-black/20 transition-all group-hover:bg-black/10 dark:group-hover:bg-black/55'></div>
+
+// 移动端优化
+@media (max-width: 640px) {
+  .project-card-fg {
+    --un-gradient-to-position: 35%;
+    padding-bottom: 0.75rem;
+    padding-top: 2rem;
+  }
+}
+```
+
+### 移动端兼容性修复
+
+**CSS 缩放优化**
+- 桌面端：保持 1.3 倍缩放 (`@media (min-width: 1024px) { html { zoom: 1.3; } }`)
+- 移动端：无缩放，防止布局错乱
+- 溢出控制：移动端 `overflow-x: hidden`
+
+**背景装饰优化**
+- 粒子动画：移动端性能优化
+- 几何图形：响应式尺寸调整
+- 渐变光晕：移动端边界控制
+
 ## 许可证
 
 参见仓库内 `LICENSE` 文件。
