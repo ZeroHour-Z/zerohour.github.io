@@ -78,3 +78,4 @@ ignore.*
 bunfig.toml
 /src/content/blog/test.*
 /test/
+# 添加到 .gitignore 来避免意外修改

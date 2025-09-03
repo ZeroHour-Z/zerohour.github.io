@@ -172,6 +172,20 @@ head: [
 
 ## 最近优化内容
 
+### 热重载优化
+- 轮询模式：使用 `usePolling: true` 和 `interval: 2000` 减少 CPU 占用
+- 在 astro.config.ts 文件中添加：
+```ts
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 2000  // 增加到2秒，减少CPU占用
+      }
+    }
+  }
+```
+
 ### 项目卡片组件优化 (ProjectCard.astro)
 
 **深色模式适配**

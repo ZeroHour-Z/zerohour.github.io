@@ -108,6 +108,12 @@ export default defineConfig({
       //     emitFile: true,
       //     filename: 'stats.html'
       //   })
-    ]
+    ],
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 2000  // 增加到2秒，减少CPU占用
+      }
+    }
   }
 })
