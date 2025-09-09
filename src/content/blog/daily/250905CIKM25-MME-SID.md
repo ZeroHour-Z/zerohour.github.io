@@ -47,6 +47,9 @@ tags:
 
 **“我们提出了一种具有最大平均差异的多模态残差量化变分自动编码器（MM-RQ-VAE）作为对齐的重建损耗和对比学习，分别有效地保留了模态内距离信息并捕获了模态间相关性。”**
 
+MM：Multimodal
+RQ：Residual Quantization
+VAE：Variational Autoencoder
 
 
 
