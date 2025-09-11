@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "250903uv学习"
             }
+          },
+          {
+            "id": "3b9ed72b528bce9f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "automatic_control_theory/第 1 章 绪论.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "第 1 章 绪论"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -169,8 +184,14 @@
       "bases:创建新数据库": false
     }
   },
-  "active": "e9da4a577a93e272",
+  "active": "3b9ed72b528bce9f",
   "lastOpenFiles": [
+    "customize/index.md",
+    "automatic_control_theory/第 1 章 绪论.md",
+    "daily/250823.md",
+    "daily/250823.jpg",
+    "daily/241005.md",
+    "automatic_control_theory",
     "daily/250905CIKM25-MME-SID.md",
     "daily/250903uv学习.md",
     "daily/250903解决zsh启动慢问题.md",
