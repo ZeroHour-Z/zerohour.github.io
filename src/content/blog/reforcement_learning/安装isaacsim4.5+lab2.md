@@ -42,7 +42,7 @@ pip install 'isaacsim[all,extscache]==4.5.0' --extra-index-url https://pypi.nvid
 isaacsim
 ```
 
-### 2. 安装 Isaac Lab 2.0
+## 安装 Isaac Lab 2.0
 
 - 克隆 isaaclab2.0 仓库
 ```bash
