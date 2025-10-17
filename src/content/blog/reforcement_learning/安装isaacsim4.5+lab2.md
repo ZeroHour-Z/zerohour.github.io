@@ -12,7 +12,7 @@ language: '中文'
 ## 安装 Isaac Sim 4.5
 
 官网提供了两种安装方式，一种是使用 pip 安装，一种是使用给的 zip 压缩包安装。
-我是用 pip 在 conda 环境里安装的，conda 的命令可以参考[Miniconda 常用命令速查](https://blog.csdn.net/qq_44414262/article/details/134940402)。
+我是用 pip 在 conda 环境里安装的，conda 的命令可以参考[Miniconda 常用命令速查](https://zerohour.fun/blog/daily/241102/)。
 
 - 创建一个名为 env_isaaclab 的 conda 环境，并安装 python3.10。
 ```bash
