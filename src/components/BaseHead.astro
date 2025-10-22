@@ -20,10 +20,34 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.png', As
 <title>{siteTitle}</title>
 
 {/* Icons / Favicon */}
+<link rel='icon' type='image/x-icon' href='/favicon/ZeroHour_G_logo.ico' />
 <link rel='icon' type='image/svg+xml' href='/favicon/ZeroHour_G_logo.svg' />
-<link rel='apple-touch-icon' sizes='180x180' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
 <link rel='icon' type='image/png' sizes='32x32' href='/favicon/ZeroHour_G_logo_favicon-32x32.png' />
 <link rel='icon' type='image/png' sizes='16x16' href='/favicon/ZeroHour_G_logo_favicon-16x16.png' />
+
+{/* Apple Touch Icons - 苹果设备专用 */}
+<link rel='apple-touch-icon' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+<link rel='apple-touch-icon' sizes='57x57' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+<link rel='apple-touch-icon' sizes='60x60' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+<link rel='apple-touch-icon' sizes='72x72' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+<link rel='apple-touch-icon' sizes='76x76' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+<link rel='apple-touch-icon' sizes='114x114' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+<link rel='apple-touch-icon' sizes='120x120' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+<link rel='apple-touch-icon' sizes='144x144' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+<link rel='apple-touch-icon' sizes='152x152' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+<link rel='apple-touch-icon' sizes='180x180' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
+
+{/* Apple Web App */}
+<meta name='apple-mobile-web-app-capable' content='yes' />
+<meta name='apple-mobile-web-app-status-bar-style' content='default' />
+<meta name='apple-mobile-web-app-title' content='ZeroHour' />
+
+{/* 强制Safari使用我们的图标 */}
+<link rel='shortcut icon' href='/favicon/ZeroHour_G_logo.ico' />
+<link rel='bookmark' href='/favicon/ZeroHour_G_logo.ico' />
+
+{/* 临时解决方案：直接覆盖默认favicon */}
+<link rel='icon' href='/favicon/ZeroHour_G_logo_apple-touch-icon.png' />
 
 <link rel='manifest' href='/favicon/site.webmanifest' />
 
