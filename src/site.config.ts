@@ -9,7 +9,7 @@ export const theme: ThemeUserConfig = {
   /** Description metadata for your website. Can be used in page metadata. */
   description: 'Personal website showcasing my projects',
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
-  favicon: '/favicon/ZeroHour_G_logo.svg',
+  favicon: '/favicon/ZeroHour_G_logo.ico',
   /** Specify the default language for this site. */
   locale: {
     lang: 'zh-CN',
