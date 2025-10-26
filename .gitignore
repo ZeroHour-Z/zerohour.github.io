@@ -79,3 +79,9 @@ bunfig.toml
 /src/content/blog/test.*
 /test/
 # 添加到 .gitignore 来避免意外修改
+
+# blog
+/src/content/blog/daily/automatic_control_theory/*.md
+/src/content/blog/daily/deep-learning/*.md
+/src/content/blog/.obsidian/
+/src/content/docs/
