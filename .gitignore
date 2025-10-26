@@ -78,9 +78,10 @@ ignore.*
 bunfig.toml
 /src/content/blog/test.*
 /test/
+
 # blog
-src/content/blog/automatic_control_theory/*.md
-src/content/blog/deep-learning/*.md
+src/content/blog/automatic_control_theory/
+src/content/blog/deep-learning/
 src/content/blog/.obsidian/
 src/content/docs/
 
