@@ -1,5 +1,5 @@
 ---
-title: "PaperReading"
+title: "PaperReading0"
 publishDate: 2025-10-12
 updatedDate: 2025-10-22
 description: 'Utilize Model'
@@ -7,6 +7,7 @@ tags:
   - PaperReading
   - Sequential Recommendation
   - Utilize
+  - LLM
 ---
 
 ## TedRec-RUC-Model-Utilize
