@@ -1,7 +1,6 @@
 ---
-title: "PaperReading0"
-publishDate: 2025-10-12
-updatedDate: 2025-10-22
+title: "PaperReading1"
+publishDate: 2025-10-31
 description: 'Utilize Model'
 tags:
   - PaperReading
@@ -10,124 +9,221 @@ tags:
   - LLM
 ---
 
-## TedRec-RUC-Model-Utilize
+## PAD
 
-> 融合文本特征与ID特征
+![PAD](PAD.png)
 
-问题：直接融合的方式只在物品级别上进行融合，无法在注意力交互之前，在同一序列的其他位置使用
+**Motivation：**
+- 冷启动问题
+- 高推理延迟
+- 对齐损失使用非特征核，非特征核不能捕捉数据分布的全部统计信息
+- 将文本嵌入对齐到协作空间会导致遗忘
 
-解决：利用TedRec方法（**Te**xt-I**D**），全局整合上下文，实现序列级语义融合
+**Method：**
+PAD框架：
+使用预训练的大模型和推荐模型获得嵌入
+通过 MK-MMD 对齐，特征对齐损失结合 BCE 损失，分别解决捕捉数据分布和遗忘问题，只对齐会导致 ID emb 在空间中偏离原本分布太大？保留推荐信息，防止遗忘
+三专家监督微调，每个模态两个表，隔离开信息防止更新导致遗忘，保证对齐的信息文本的信息ID的信息都使用。gating 针对不同频率的物品，采用不同的比例，解决冷启动问题。
 
-具体实现：
-1. 对 text embeddings 和 ID embeddings 做傅里叶变换，将全局时域序列转换到频域，再简单的进行乘法融合特征即可（频域相乘等效于时域卷积）
+**Inspiration：**
+- 冻结和更新
+- 对齐造成遗忘
 
-2. 使用 mixture-of-experts (MoE) 调制方法给文本位置信息，提升融合性能
+## Molar
 
-## Latent Relation Discovery (LRD)
+Molar: Multimodal LLMs with Collaborative Filtering Alignment for Enhanced Sequential Recommendation
 
-> 序列推荐建模：
-> 传统：项目之间的隐式协同过滤
-> 现代：显式地将项目关系加入用户历史序列的建模中，大多关系来自知识图谱
-> Relation-aware Recommendation
+MLLM + CF 多模态信息整合再加上协同过滤信息
 
-问题：依赖于人工预定义的关系。存在稀疏性问题。泛化能力差。
+![Molar](Molar.png)
 
-解决：关系感知序列推荐框架
+**Motivation：**
+- LLM 缺少协同过滤信息；依赖文本模态，忽略多模态内容
+- MLLM 多模态整合问题：非文本信息丢失或者多模态特征没对齐
+- 过早融合 ID 导致协同过滤信息丢失，可能学了个 ID 规律，根本没学到什么信息
 
-不靠预定义，用 LLM 来挖掘关系，用自然语言，描述物品间的关系
+**Method：**
+Molar 框架：
+1. **Multimodal Item Representation Model (MIRM)**：
+   MLLM 提取物品的多模态嵌入
+   - 图像-文本对齐微调，图像生成文本描述
+   - Structured Attribute 输入物品属性，输出文本描述
+   - Temporal User Behavior Understanding，这个应该相当于直接利用大模型理解用户行为预测
 
-具体：
-1. LLM 获取物品的语言知识表示
-2. 输入基于 DVAE 的潜在关系发现模块
-3. 自监督关系发现任务与推荐任务一起优化
+2. **Dynamic User Embedding Generator (DUEG)**：
+   - 基于LLM（去除词嵌入层）处理物品嵌入序列
+   - 生成动态用户嵌入
+   - 损失：Point-wise BCE + Alignment Loss（对比学习对齐 ID 和 content 用户嵌入），其中 ID 用户嵌入有协同过滤信息
 
-详细分析：
+后对齐 ID 和内容模型的用户嵌入
 
-关系存储在知识图谱中，知识图谱依赖于人工预定义的关系，稀疏
-——关系（边）稀疏，物品数据（点）稀疏
+## LLM-ESR
 
-### 两个路径（任务）：
+LLM-ESR: Large Language Models Enhancement for Long-tailed Sequential Recommendation
 
-**路径一：** Item Embedding
-物品ID → 嵌入层 → 物品嵌入向量 (v_i, v_j) → 知识图谱交互
+解决长尾问题，协同信息少，利用语义信息增强
 
-**路径二：** LLM-based Relation Extraction
-物品 → LLM → 语言知识表示 (e_i, e_j) → 关系提取模块 → 潜在关系 r
+![LLM-ESR](LLM-ESR.png)
 
-**Item Reconstruction Module：**
+**Motivation：**
+- 长尾用户长尾物品
+- **现有方法问题**：
+  - LLM 高推理延迟
+  - LLM 嵌入不冻结就微调会丢失原始语义关系
+  - 只关注物品侧，忽略用户侧的语义增强
 
-输入：物品嵌入 (v_i, v_j) + 提取的关系 r
-基于目标物品和关系来重构历史物品
+编码大模型的提示文本，获取物品和用户的语义嵌入
 
+**Method：**
 
-## LSVCR
+LLM-ESR框架包含两个核心模块：
 
-> Joint Video and Comment Recommendation
+1. **Dual-view Modeling（双视图建模）**：
+   - **语义视图（Semantic-view）**：
+     - 使用LLM提取物品的语义嵌入，通过prompt组织物品属性和描述
+     - **冻结LLM嵌入**，避免微调丢失语义关系
+     - adapter 维度适配空间变换到推荐空间，得到物品嵌入
+     - 将物品嵌入序列输入序列编码器，得到语义视图的用户偏好表示
+   
+   - **协作视图（Collaborative-view）**：
+     - 使用可更新的协作嵌入层编码物品
+     - 通过序列编码器得到协作视图的用户表示
+     - **初始化**：用 PCA 降维后的 E *~se~*  初始化 E *~co~* ，因为语义视图是预训练的，协作视图是从头训练的，解决两个视图训练不平衡问题
+     - 交叉注意力机制，让两个视图的序列相互交互
+     - 预测时拼接两个视图的用户和物品嵌入
 
-问题：现有推荐系统主要关注用户与视频的交互行为，忽略了评论内容和交互在用户偏好建模中的作用
+2. **Retrieval Augmented Self-Distillation（检索增强自蒸馏）**：
+   - **检索相似用户**：
+     - 使用 LLM 提取用户偏好表示，将用户交互的物品标题组织成 prompt
+     - 通过余弦相似度检索 Top-N 相似用户
+   
+   - **自蒸馏进行迁移**：
+     - Teacher：相似用户的用户表示均值，知道信号
+     - Student：目标用户的用户表示
 
-解决：LSVCR (Large Language Models for Sequential Video and Comment Recommendation)
+**与PAD和Molar的对比：**
+- **PAD**：关注对齐和遗忘问题，使用MK-MMD和BCE损失，三专家架构
+- **Molar**：关注多模态整合，MLLM提取物品嵌入，后对齐ID和内容嵌入
+- **LLM-ESR**：关注长尾问题，双视图融合语义和协作信息，检索增强自蒸馏
+- **共同点**：都利用LLM的语义能力，都避免实时LLM推理，都关注冻结/更新策略
 
-利用用户与视频和评论的交互历史，联合进行个性化视频和评论推荐
+## AlphaRec
 
-具体：
+Language Representations Can be What Recommenders Need: Findings and Potentials
 
-1. **序列推荐 (SR) 模型**：作为主要推荐骨干（部署时保留）
-2. **补充大语言模型 (LLM) 推荐器**：更好地捕获异构交互行为中的潜在用户偏好（部署时丢弃）
+发现语言表示空间中隐式编码了协作信号，提出完全基于语言表示的推荐模型
 
-### 两阶段：
+![AlphaRec](AlphaRec.png)
 
-**第一阶段：个性化偏好对齐**
-- 目标：对齐两个组件的偏好表示
-- 作用：增强SR模型的语义理解能力
+**Motivation：**
 
-**第二阶段：推荐导向微调**
-- 目标：根据特定目标微调对齐增强的SR模型
-- 作用：优化最终推荐性能
+语言模型是否隐式编码了用户偏好信息（协作信号）？
+LMs通过大规模文本预训练，学习了世界知识；物品标题、描述等文本可能隐含用户偏好信息
+普遍认为 LMs 和传统推荐器学习两个不同的表示空间（语言空间 vs 行为空间），需要对齐才能增强。实际可能直接从语言表示空间提取推荐空间，同态关系。
 
-## NoteLLM
+Linear Mapping 实验发现，语言表示中编码了协作信号，语言表示空间和推荐空间之间存在同态映射
 
-问题：
+**Method**
 
-BERT-based modelsgenerate note embeddings
-忽略了重要的 tags/categories
+完全基于语言表示，不使用 ID 嵌入的 CF 模型
 
-解决：
-1. 用笔记压缩提示压缩笔记成单 token
-2. 通过对比学习学习潜在的相关笔记的嵌入
-3. 利用 NoteLLM 通过指令调优自动总结笔记并生成 tags/categories
+1. **MLP**：非线性变换有助于从语言表示空间中挖掘出更全面的偏好相似性，用两层MLP替代线性映射矩阵
 
-详细：
+2. 图卷积
 
-现有的在线 I2I 笔记推荐方法通常将整个笔记内容输入基于 BERT 的模型，以生成笔记的嵌入，并基于嵌入相似度推荐相关笔记
+3. 对比学习
 
-但这些方法将 tags/categories 作为笔记的一部分，没充分利用
+**完全不用ID嵌入？**
+ID 嵌入缺乏语义，迁移能力差、无法感知用户意图，语言表示包含丰富语义，可以解决这些问题
 
-生成 tags/categories 与生成笔记嵌入相似
+## BAHE
 
-## NoteLLM-2
+Breaking the Length Barrier: LLM-Enhanced CTR Prediction in Long Textual User Behaviors
 
-> 用 LLM 增强多模态
+解决 LLM 在 CTR 预测中处理长文本用户行为序列的效率瓶颈
 
-问题：
-预训练的 MLLM 需要高质量网络规模多模态数据
-经过微调的 LLMs 往往忽略图像内容
+![BAHE](BAHE.png)
 
-解决：
-提出端到端的微调方法，定制化地整合任何现有的 LLMs 和视觉编码器
-提出 NoteLLM-2 框架，增强视觉信息
+**Motivation：**
+LLM处理长用户行为序列的效率瓶颈。CTR 预测中，整合更长、更丰富的用户序列通常能提升性能，但随着序列增长，LLM 的训练和推理效率显著下降，无法处理大规模CTR预测
 
-具体：
-1. 基于提示，将视觉和文本内容分离，采用多模态上下文学习策略来平衡各模态的关注
-2. 后期融合：直接将视觉信息整合到最终表示中
+- 相同行为在不同用户序列中被重复编码，例如用户i和j都包含行为a1、a2、a3，导致不必要的重复编码
+- 行为表示提取和行为交互建模耦合。行为的语义是静态的，但用户序列顺序是动态的，现有方法将行为表示提取与序列理解绑定，频繁更新消耗计算资源
 
+**Method：BAHE框架**
 
+分层架构，解耦行为编码和行为交互，低层预训练，高层可训练
 
+1. **原子行为编码**：
+   - 使用 LLM 的**预训练低层**编码所有原子行为
+   - 离线存储到行为嵌入表
+   - 关键是从 token 级编码升级到行为级编码，序列长度从 token 数减少到行为数
 
-## Tolearn: 
+2. **行为聚合**：
+   - 从离线存储的行为嵌入表中检索用户序列中的行为嵌入，拼接得到序列表示
+   - 使用 LLM 的**深层可训练层**建模行为间交互，得到用户序列表示
 
-- MoE: https://zhuanlan.zhihu.com/p/542465517
-- SASRec
-- DVAE: 离散状态变分自编码器
-- LSTM, GRU, seq2seq……
-- Relation-aware Recommendation, 显式
+3. **Feature 并行**：并行独立处理每个用户序列，最后拼接
+
+4. **CTR Modeling**：用户表示和物品表示拼接后输入 CTR 模型
+
+**效率**
+O(L(NMK)²)，序列数 × 行为数 × token数
+O(L~low~(HK²)) + O(L~high~(NM²))
+
+**分层架构**
+- 解耦，复用
+- 行为编码，缩短序列长度
+- 异步更新
+
+---
+## LLM-CF（todo占位
+
+Large Language Models Enhanced Collaborative Filtering
+
+使用LLM的世界知识和推理能力增强协同过滤，通过in-context learning和chain of thought reasoning
+
+![LLM-CF](LLM-CF.png)
+
+**Motivation：**
+- LLM-enhanced RSs 无法充分利用协同过滤信息：LLM只能接受有限数量的用户和物品作为输入
+- 现有方法主要关注有限的用户-物品信息，忽略了协同过滤信息
+- 效率问题：新交互或新物品出现时需要实时LLM处理，导致效率低下
+
+**Method：**
+
+LLM-CF框架分为两部分：
+
+1. **离线服务**：
+仅用推荐数据微调 LLM 会导致遗忘通用能力
+使用混合数据方法（推荐数据 + 通用instruction-tuning数据）微调LLaMA2，训练得到RecGen-LLaMA，通用能力和推荐能力
+生成 CoT Reasoning
+使用 RecGen-LLaMA 为训练数据生成 CoT reasoning
+
+1. **在线服务**：
+   - **检索**：进行embedding-based检索，从In-context CoT数据集中检索Top-K相似历史推荐示例，检索到的示例包含相似推荐特征和CoT reasoning
+   
+   - **In-context Chain of Thought**：使用检索到的in-context CoT examples和当前推荐特征构建ICT tokens，使用Transformer Decoder层进行in-context learning，学习世界知识和推理引导的协同过滤特征 $\mathbf{w}_i$
+
+**效率**
+离线生成CoT reasoning，避免实时LLM推理
+检索使用预计算embedding 搜索
+解耦LLM生成和推荐系统在线服务
+
+**Inspiration：**
+- In-context learning和Chain of Thought reasoning的应用
+- 混合数据微调平衡通用和推荐能力
+
+**对比：**
+- **PAD**：对齐文本和协作嵌入，使用MK-MMD，三专家架构
+- **Molar**：MLLM提取多模态嵌入，后对齐ID和内容嵌入
+- **LLM-ESR**：双视图融合语义和协作，检索增强自蒸馏
+- **AlphaRec**：**完全不用ID嵌入**，纯语言表示，发现语言空间中的协作信号
+- **BAHE**：**解决长序列效率问题**，分层架构，行为级编码，离线存储复用
+- **LLM-CF**：**In-context CoT reasoning**，检索相似历史示例，通过ICT模块学习CF特征，离线/在线解耦
+- **共同点**：避免实时LLM推理（预提取/离线存储）
+- **区别**：
+  - AlphaRec：纯语言表示可以超越ID-based CF
+  - BAHE：效率优化，分层和复用
+  - LLM-CF：使用in-context learning和CoT reasoning 增强协同过滤
+
