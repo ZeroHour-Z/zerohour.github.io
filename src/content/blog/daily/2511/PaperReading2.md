@@ -1,7 +1,7 @@
 ---
 title: "PaperReading2"
 publishDate: 2025-11-9
-description: 'Paper Reading on Multi-behavior Recommendation'
+description: 'Paper Reading on Multi-behavior Sequential Recommendation'
 tags:
   - PaperReading
   - Sequential Recommendation
