@@ -128,7 +128,11 @@ tags:
 
 ## PBAT（todo）
 
-Personalized behavior-aware transformer for multi-behavior sequential recommendation MM23
+[Personalized Behavior-Aware Transformer for Multi-Behavior Sequential Recommendation](https://arxiv.org/abs/2402.14473) MM23
+
+![image-20251127201219771](image-20251127201219771.png)
+
+
 
 ## END4Rec
 
@@ -205,7 +209,7 @@ FFT 提升效率，去噪
 
 ## MBGen (todo)
 
-Multi-behavior generative recommendation CIKM24
+Multi-behavior ==generative== recommendation CIKM24
 
 ## HMAR
 
