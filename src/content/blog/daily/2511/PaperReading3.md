@@ -1,6 +1,7 @@
 ---
 title: "PaperReading3"
 publishDate: 2025-11-19
+updatedDate: 2025-11-27
 description: 'Paper Reading on Multi-behavior Recommendation'
 tags:
   - PaperReading
@@ -126,13 +127,13 @@ tags:
 
 感觉超图的构建和多视图融合也会吃性能。。。
 
-## PBAT（todo）
+## PBAT
+
+也是改进 Attention 的，建模成高斯分布罢了
 
 [Personalized Behavior-Aware Transformer for Multi-Behavior Sequential Recommendation](https://arxiv.org/abs/2402.14473) MM23
 
 ![image-20251127201219771](image-20251127201219771.png)
-
-
 
 ## END4Rec
 
@@ -206,10 +207,6 @@ FFT 提升效率，去噪
        *   **Stage 4**: 联合微调整个模型
 
    *   堆 EBM 在 Soft Noise Filter 之后，又接了一个 EBM 层用于最终的特征编码，最后输出到 Prediction Layer 进行预测
-
-## MBGen (todo)
-
-Multi-behavior ==generative== recommendation CIKM24
 
 ## HMAR
 
