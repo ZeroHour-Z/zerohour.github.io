@@ -82,7 +82,6 @@ bunfig.toml
 /test/
 
 # blog
-src/content/blog/automatic_control_theory/
 src/content/blog/deep-learning/
 src/content/blog/.obsidian/
 src/content/blog/daily/2510/251025_om1.md
