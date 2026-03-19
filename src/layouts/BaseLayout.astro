@@ -29,7 +29,7 @@ const {
 
   <body class='flex justify-center bg-background text-foreground' {...props}>
     {/* 全局背景动画 */}
-    <BackgroundDecorator type="animated" />
+    <BackgroundDecorator type="animated" transition:persist />
     
     {
       highlightColor && (
@@ -41,12 +41,31 @@ const {
       )
     }
     <div class='w-full max-w-[70rem] px-4 sm:px-7 lg:px-10 min-h-[100dvh] flex flex-col justify-between'>
-      <Header />
+      <Header transition:name="header" transition:animate="none" />
       <div class='flex-1 w-full'>
         <slot />
       </div>
-      <Footer />
+      <Footer transition:name="footer" transition:animate="none" />
     </div>
+
+    {/* Scroll reveal observer */}
+    <script>
+      function initScrollReveal() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible')
+              observer.unobserve(entry.target)
+            }
+          })
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' })
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el))
+      }
+
+      initScrollReveal()
+      document.addEventListener('astro:after-swap', initScrollReveal)
+    </script>
 
     {/* Set highlight color */}
     <style define:vars={{ highlightColor }}>

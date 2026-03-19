@@ -75,30 +75,34 @@ const { meta, highlightColor, back = '/', ...props } = Astro.props
 </PageLayout>
 
 <script>
-  // Toggle sidebar visibility on button click
-  const sidebarButton = document.getElementById('sidebar-btn')
-  const sidebar = document.getElementById('sidebar')
-  const sidebarShade = document.getElementById('sidebar-shade') as HTMLElement
+  function initSidebar() {
+    const sidebarButton = document.getElementById('sidebar-btn')
+    const sidebar = document.getElementById('sidebar')
+    const sidebarShade = document.getElementById('sidebar-shade') as HTMLElement
 
-  if (sidebarShade) {
-    sidebarShade.addEventListener('click', () => {
+    if (sidebarShade) {
+      sidebarShade.addEventListener('click', () => {
+        toggleSidebar()
+      })
+    }
+
+    function toggleSidebar() {
+      if (sidebar && sidebar.classList.contains('show')) {
+        sidebar.classList.remove('show')
+        sidebarShade.style.display = 'none'
+      } else if (sidebar) {
+        sidebar.classList.add('show')
+        sidebarShade.style.display = 'block'
+      }
+    }
+
+    sidebarButton?.addEventListener('click', () => {
       toggleSidebar()
     })
   }
 
-  function toggleSidebar() {
-    if (sidebar && sidebar.classList.contains('show')) {
-      sidebar.classList.remove('show')
-      sidebarShade.style.display = 'none'
-    } else if (sidebar) {
-      sidebar.classList.add('show')
-      sidebarShade.style.display = 'block'
-    }
-  }
-
-  sidebarButton?.addEventListener('click', () => {
-    toggleSidebar()
-  })
+  initSidebar()
+  document.addEventListener('astro:after-swap', initSidebar)
 </script>
 <style>
   @media (min-width: 769px) {
