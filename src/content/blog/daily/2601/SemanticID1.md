@@ -1,9 +1,10 @@
 ---
-title: "PaperReading"
+title: "Semantic ID 1"
 publishDate: 2026-01-25
-description: 'Paper Reading on Multi-behavior Recommendation'
+description: 'Semantic ID'
 tags:
   - PaperReading
+  - Semantic ID
 ---
 
 ## Foresight Prediction Enhanced Live-Streaming Recommendation

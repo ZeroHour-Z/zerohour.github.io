@@ -10,7 +10,7 @@ tags:
 
 ## DAS: Dual-Aligned Semantic IDs Empowered Industrial Recommender System
 
-[[2508.10584\] DAS: Dual-Aligned Semantic IDs Empowered Industrial Recommender System](https://arxiv.org/abs/2508.10584)
+[[2508.10584] DAS: Dual-Aligned Semantic IDs Empowered Industrial Recommender System](https://arxiv.org/abs/2508.10584)
 
 <img src="image-20251218194814199.png" alt="image-20251218194814199"  />
 
@@ -48,7 +48,7 @@ tags:
 
 ## COINS: SemantiC Ids Enhanced COLd Item RepresentatioN for Click-through Rate Prediction in E-commerce Search
 
-[[2510.12604\] COINS: SemantiC Ids Enhanced COLd Item RepresentatioN for Click-through Rate Prediction in E-commerce Search](https://arxiv.org/abs/2510.12604)
+[[2510.12604] COINS: SemantiC Ids Enhanced COLd Item RepresentatioN for Click-through Rate Prediction in E-commerce Search](https://arxiv.org/abs/2510.12604)
 
 ![image-20251225193805077](image-20251225193805077.png)
 
@@ -93,7 +93,7 @@ SID 缺少与推荐任务的对齐
 
 ## Q-BERT4Rec: Quantized Semantic-ID Representation Learning for Multimodal Recommendation
 
-[[2512.02474\] Q-BERT4Rec: Quantized Semantic-ID Representation Learning for Multimodal Recommendation](https://arxiv.org/abs/2512.02474)
+[[2512.02474] Q-BERT4Rec: Quantized Semantic-ID Representation Learning for Multimodal Recommendation](https://arxiv.org/abs/2512.02474)
 
 
 
