@@ -14,7 +14,7 @@ import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
 
 // Get dynamic import of images as a map collection
 const imagesGlob = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/content/blog/**/*.{jpeg,jpg,png,gif,avif.webp}' // add more image formats if needed
+  '/src/content/blog/**/*.{jpeg,jpg,png,gif,avif,webp}'
 )
 
 const renderContent = async (post: CollectionEntry<'blog'>, site: URL) => {
@@ -71,8 +71,10 @@ const GET = async (context: AstroGlobal) => {
       allPostsByDate.map(async (post) => ({
         pubDate: post.data.publishDate,
         link: `/blog/${post.id}`,
-        customData: `<h:img src="${typeof post.data.heroImage?.src === 'string' ? post.data.heroImage?.src : post.data.heroImage?.src.src}" />
-          <enclosure url="${typeof post.data.heroImage?.src === 'string' ? post.data.heroImage?.src : post.data.heroImage?.src.src}" />`,
+        customData: post.data.heroImage?.src
+          ? `<h:img src="${typeof post.data.heroImage.src === 'string' ? post.data.heroImage.src : post.data.heroImage.src.src}" />
+          <enclosure url="${typeof post.data.heroImage.src === 'string' ? post.data.heroImage.src : post.data.heroImage.src.src}" />`
+          : '',
         content: await renderContent(post, siteUrl),
         ...post.data
       }))
