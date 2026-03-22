@@ -22,24 +22,16 @@ import {
 } from './src/plugins/shiki-transformers.ts'
 import config from './src/site.config.ts'
 
+const isGitHub = process.env.DEPLOY_TARGET === 'github'
+
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
-  site: 'https://zerohour.fun',
-  // base: '/docs',
+  site: isGitHub ? 'https://zerohour-z.github.io' : 'https://zerohour.fun',
   trailingSlash: 'never',
 
-  // Adapter
-  // https://docs.astro.build/en/guides/deploy/
-  // 1. Vercel (serverless)
-  adapter: vercel(),
-  output: 'server',
-  // 2. Vercel (static)
-  // adapter: vercelStatic(),
-  // 3. Local (standalone)
-  // adapter: node({ mode: 'standalone' }),
-  // output: 'server',
-  // ---
+  // Adapter: Vercel serverless by default, static for GitHub Pages
+  ...(isGitHub ? {} : { adapter: vercel(), output: 'server' as const }),
 
   image: {
     service: {
