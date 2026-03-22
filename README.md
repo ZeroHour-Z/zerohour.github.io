@@ -1,6 +1,6 @@
 # ZeroHour's Blog
 
-基于 Astro 与 `astro-theme-pure` 的个人博客项目。集成 UnoCSS、Shiki 代码高亮（复制按钮/标题/语言标签/差异高亮）、KaTeX 数学公式、Waline 评论等能力；适配 Vercel 部署；站点地址在 `astro.config.ts` 里设置为 `https://zerohour.github.io`。
+基于 Astro 与 `astro-theme-pure` 的个人博客项目。集成 UnoCSS、Shiki 代码高亮（复制按钮/标题/语言标签/差异高亮）、KaTeX 数学公式、Waline 评论等能力；支持 Vercel + GitHub Pages 双部署。
 
 ## 快速开始
 
@@ -35,10 +35,12 @@ bun run clean
 
 ## 站点与部署
 
-- 站点地址：在 `astro.config.ts` 设置 `site: 'https://zerohour.github.io'`
-- 适配器与输出：使用 `@astrojs/vercel`，`output: 'server'`
-- Vercel：`vercel.json` 指定 `bun run build`，输出目录 `dist/client`
-- 若改用 GitHub Pages 静态部署，请切换为静态适配器并设置合适的 `base/site`
+项目通过环境变量 `DEPLOY_TARGET` 支持双部署：
+
+- **Vercel**（默认）：`adapter: vercel()`、`output: 'server'`、`site: 'https://zerohour.fun'`
+- **GitHub Pages**（`DEPLOY_TARGET=github`）：静态输出、`site: 'https://zerohour-z.github.io'`
+
+推送到 `main` 分支后，Vercel 和 GitHub Actions 会分别自动构建部署。
 
 ## 创建新文章
 
@@ -145,18 +147,7 @@ markdown: {
 }
 ```
 
-- 站点域名与部署目标：
-  - 修改 `astro.config.ts` 中的 `site`（以及必要时的 `base`）
-  - Vercel：保持 `adapter: vercel()` 与 `output: 'server'`
-  - 静态部署（GitHub Pages 等）：切到静态适配器并按平台配置 `base/site`
-
-```ts
-// astro.config.ts（示例）
-export default defineConfig({
-  site: "https://your-domain.com",
-  // base: "/your-sub-path",
-})
-```
+- 站点域名与部署目标：修改 `astro.config.ts` 中的 `site`（以及必要时的 `base`），部署方式通过 `DEPLOY_TARGET` 环境变量自动切换
 
 - SEO/HEAD 扩展：在 `theme.head` 添加自定义 `<meta>`/`link>`
 
@@ -169,66 +160,6 @@ head: [
 ```
 
 > 静态资源（如图标）放在 `public/`，源码图片可置于 `src/assets/`；修改路径后注意与配置同步。
-
-## 最近优化内容
-
-### 热重载优化
-- 轮询模式：使用 `usePolling: true` 和 `interval: 2000` 减少 CPU 占用
-- 在 astro.config.ts 文件中添加：
-```ts
-  vite: {
-    server: {
-      watch: {
-        usePolling: true,
-        interval: 2000  // 增加到2秒，减少CPU占用
-      }
-    }
-  }
-```
-
-### 项目卡片组件优化 (ProjectCard.astro)
-
-**深色模式适配**
-- 自动检测主题：浅色模式保持明亮，深色模式自动变暗
-- 深色叠加层：`bg-black/5 dark:bg-black/20`
-- 悬停效果：`group-hover:bg-black/10 dark:group-hover:bg-black/55`
-
-**移动端响应式**
-- 文字定位：底部固定定位，避免移动端布局错乱
-- 渐变覆盖：移动端仅覆盖 35%，桌面端 40%
-- 字体大小：移动端 `text-sm` + `text-xs`，桌面端 `text-xl` + `text-base`
-
-**交互体验**
-- 悬停显示：默认隐藏文字，悬停时淡入显示
-- 无边框设计：移除边框，卡片完全贴合
-- 统一颜色：标题和副标题使用相同 `text-muted-foreground`
-
-**样式配置**
-```ts
-// 深色叠加层配置
-<div class='absolute inset-0 bg-black/5 dark:bg-black/20 transition-all group-hover:bg-black/10 dark:group-hover:bg-black/55'></div>
-
-// 移动端优化
-@media (max-width: 640px) {
-  .project-card-fg {
-    --un-gradient-to-position: 35%;
-    padding-bottom: 0.75rem;
-    padding-top: 2rem;
-  }
-}
-```
-
-### 移动端兼容性修复
-
-**CSS 缩放优化**
-- 桌面端：保持 1.3 倍缩放 (`@media (min-width: 1024px) { html { zoom: 1.3; } }`)
-- 移动端：无缩放，防止布局错乱
-- 溢出控制：移动端 `overflow-x: hidden`
-
-**背景装饰优化**
-- 粒子动画：移动端性能优化
-- 几何图形：响应式尺寸调整
-- 渐变光晕：移动端边界控制
 
 ## 许可证
 
