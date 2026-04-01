@@ -37,11 +37,12 @@ if (!images[imagePath])
     class='absolute top-0 h-full w-full object-cover transition-all'
     loading='lazy'
   />
-  <!-- 深色叠加层 - 深色模式更暗，浅色模式保持明亮 -->
   <div class='absolute inset-0 bg-black/5 dark:bg-black/20 transition-all group-hover:bg-black/10 dark:group-hover:bg-black/55'></div>
   <div class='project-card-fg z-10 flex flex-col gap-y-1 px-3 sm:px-6 pb-3 sm:pb-6 transition-all opacity-0 group-hover:opacity-100 group-focus-within:opacity-100'>
-    <h2 class='text-base sm:text-xl font-medium text-muted-foreground'>{heading}</h2>
-    <p class='text-muted-foreground text-xs sm:text-base'>{subheading}</p>
+    <div class='project-card-glass rounded-xl px-3 py-2'>
+      <h2 class='text-base sm:text-xl font-medium text-white'>{heading}</h2>
+      <p class='text-white/70 text-xs sm:text-base'>{subheading}</p>
+    </div>
   </div>
   <slot />
 </Tag>
@@ -61,6 +62,13 @@ if (!images[imagePath])
       var(--un-gradient-to-position);
     --un-gradient-stops: var(--un-gradient-from), var(--un-gradient-to);
     background-image: linear-gradient(var(--un-gradient));
+  }
+
+  .project-card-glass {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 
   .project-card {

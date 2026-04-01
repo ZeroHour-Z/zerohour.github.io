@@ -225,14 +225,124 @@ span.katex-display {
   }
 }
 
-/* Card interactions */
-.card-interactive {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+/* ── Glassmorphism ── */
+
+/* Header behavior:
+   1) Top of page: transparent (no bg)
+   2) Scrolled (not-top): shrink horizontally + glass background
+*/
+header-component {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  margin-inline: 0 !important;
 }
-.card-interactive:hover {
+header-component.not-top {
+  margin-inline: clamp(0.75rem, 6vw, 6rem) !important;
+  background: rgba(255, 255, 255, 0.38) !important;
+  backdrop-filter: blur(18px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(170%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+}
+.dark header-component.not-top {
+  background: rgba(15, 22, 40, 0.28) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* Keep inner menu container fully transparent */
+header-component #headerExpandContent,
+header-component.not-top #headerExpandContent {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Mobile expanded menu glass */
+@media (max-width: 640px) {
+  header-component.not-top {
+    margin-inline: 0.5rem !important;
+  }
+  header-component:not(.not-top) #headerExpandContent::after {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-color: transparent !important;
+  }
+  .dark header-component:not(.not-top) #headerExpandContent::after {
+    background-color: transparent !important;
+  }
+  header-component.expanded.not-top #headerExpandContent {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  .dark header-component.expanded.not-top #headerExpandContent {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+/* PostPreview glass */
+.post-preview {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease !important;
+}
+.post-preview:hover {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+.dark .post-preview {
+  background: rgba(20, 20, 40, 0.4) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+.dark .post-preview:hover {
+  background: rgba(25, 25, 50, 0.55) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Card glass (Card component & card-interactive) */
+.card-interactive,
+.not-prose.rounded-2xl.border.bg-muted,
+.not-prose.rounded-xl.border.bg-muted {
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+.card-interactive:hover,
+.not-prose.rounded-2xl.border.bg-muted:hover,
+.not-prose.rounded-xl.border.bg-muted:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border-color: hsl(var(--primary) / 0.3);
+  background: rgba(255, 255, 255, 0.55) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+.dark .card-interactive,
+.dark .not-prose.rounded-2xl.border.bg-muted,
+.dark .not-prose.rounded-xl.border.bg-muted {
+  background: rgba(20, 20, 40, 0.35) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+.dark .card-interactive:hover,
+.dark .not-prose.rounded-2xl.border.bg-muted:hover,
+.dark .not-prose.rounded-xl.border.bg-muted:hover {
+  background: rgba(25, 25, 50, 0.5) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* PostPreview hover shift */

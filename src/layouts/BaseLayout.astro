@@ -27,7 +27,7 @@ const {
     <ThemeProvider />
   </head>
 
-  <body class='flex justify-center bg-background text-foreground' {...props}>
+  <body class='flex justify-center text-foreground' style='background: transparent; isolation: isolate;' {...props}>
     {/* 全局背景动画 */}
     <BackgroundDecorator type="animated" transition:persist />
     
@@ -40,7 +40,7 @@ const {
         />
       )
     }
-    <div class='w-full max-w-[70rem] px-4 sm:px-7 lg:px-10 min-h-[100dvh] flex flex-col justify-between'>
+    <div class='w-full max-w-[70rem] px-4 sm:px-7 lg:px-10 min-h-[100dvh] flex flex-col justify-between' style='position: relative; z-index: 1;'>
       <Header transition:name="header" transition:animate="none" />
       <div class='flex-1 w-full'>
         <slot />

@@ -1,7 +1,4 @@
-﻿---
-// 背景装饰组件
-// 支持多种背景样式：渐变、纯色、图片、动态效果
-
+---
 interface Props {
   type?: 'gradient' | 'solid' | 'image' | 'animated' | 'none'
   color1?: string
@@ -10,10 +7,10 @@ interface Props {
   opacity?: number
 }
 
-const { 
-  type = 'gradient', 
-  color1 = '#667eea', 
-  color2 = '#764ba2', 
+const {
+  type = 'gradient',
+  color1 = '#667eea',
+  color2 = '#764ba2',
   imageUrl = '/path/to/background.jpg',
   opacity = 0.1
 } = Astro.props
@@ -33,193 +30,232 @@ const {
 )}
 
 {type === 'image' && (
-  <div 
-    class="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat" 
+  <div
+    class="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
     style={`background-image: url(${imageUrl}); opacity: ${opacity};`}
   ></div>
 )}
 
 {type === 'animated' && (
-  <div class="fixed inset-0 -z-10 overflow-hidden">
-    <!-- 动态粒子效果 -->
-    <div class="absolute inset-0">
-      {Array.from({ length: 50 }).map(() => (
-        <div 
-          class={`absolute rounded-full animate-particle-float`}
-          style={`
-            left: ${Math.random() * 100}%; 
-            top: ${Math.random() * 100}%; 
-            width: ${Math.random() * 4 + 1}px; 
-            height: ${Math.random() * 4 + 1}px;
-            background-color: rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1});
-            animation-delay: ${Math.random() * 3}s;
-            animation-duration: ${Math.random() * 4 + 3}s;
-            transform: scale(${Math.random() * 0.5 + 0.8}) rotate(${Math.random() * 360}deg);
-            filter: blur(${Math.random() * 0.5}px);
-          `}
-        ></div>
-      ))}
-      
-      {/* 添加一些彩色粒子 */}
-      {Array.from({ length: 15 }).map(() => (
-        <div 
-          class={`absolute rounded-full animate-particle-float`}
-          style={`
-            left: ${Math.random() * 100}%; 
-            top: ${Math.random() * 100}%; 
-            width: ${Math.random() * 3 + 2}px; 
-            height: ${Math.random() * 3 + 2}px;
-            background: linear-gradient(45deg, 
-              rgba(147, 197, 253, ${Math.random() * 0.4 + 0.2}), 
-              rgba(196, 181, 253, ${Math.random() * 0.4 + 0.2})
-            );
-            animation-delay: ${Math.random() * 4}s;
-            animation-duration: ${Math.random() * 5 + 4}s;
-            transform: scale(${Math.random() * 0.6 + 0.9}) rotate(${Math.random() * 360}deg);
-            filter: blur(${Math.random() * 0.3}px);
-          `}
-        ></div>
-      ))}
-    </div>
-    
-    <!-- 动态波浪效果 -->
-    <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-blue-500/20 to-transparent"></div>
-    
-    <!-- 浮动的几何图形 -->
-    <div class="absolute top-20 right-20 w-16 h-16 border-2 border-blue-400/30 rounded-lg animate-spin-slow"></div>
-    <div class="absolute top-40 left-20 w-12 h-12 bg-purple-400/20 rounded-full animate-circle-float"></div>
-    <div class="absolute bottom-40 right-40 w-20 h-20 border border-pink-400/30 transform rotate-45 animate-square-rotate"></div>
-    
-    <!-- 渐变光晕 -->
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/10 via-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
+  <div class="aurora-wrap fixed inset-0 overflow-hidden" style="z-index: 0; pointer-events: none;">
+    <div class="aurora-base"></div>
+    <div class="aurora-glow glow-left"></div>
+    <div class="aurora-glow glow-center"></div>
+    <div class="aurora-glow glow-right"></div>
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+    <div class="aurora-vignette"></div>
+    <div class="aurora-fade"></div>
   </div>
 )}
 
 <style>
+  /* gradient type */
   @keyframes blob {
-    0% {
-      transform: translate(0px, 0px) scale(1);
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  .animate-blob { animation: blob 7s infinite; }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
+
+  /* Elegant aurora background */
+  .aurora-base {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      #102b46 0%,
+      #173755 26%,
+      #182f45 48%,
+      hsl(210 33% 99%) 78%
+    );
+  }
+  :global(.dark) .aurora-base {
+    background: linear-gradient(
+      180deg,
+      #0a1830 0%,
+      #101f37 26%,
+      #0f1a2a 48%,
+      hsl(240 20.54% 5.2%) 78%
+    );
+  }
+
+  .aurora-glow,
+  .aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  .aurora-glow {
+    filter: blur(90px);
+    opacity: 0.42;
+  }
+  .glow-left {
+    width: 54vw;
+    height: 54vw;
+    top: -24%;
+    left: -14%;
+    background: radial-gradient(circle, rgba(70, 106, 255, 0.34), transparent 72%);
+  }
+  .glow-center {
+    width: 42vw;
+    height: 42vw;
+    top: -18%;
+    left: 32%;
+    background: radial-gradient(circle, rgba(79, 160, 255, 0.24), transparent 72%);
+  }
+  .glow-right {
+    width: 46vw;
+    height: 46vw;
+    top: -20%;
+    right: -12%;
+    background: radial-gradient(circle, rgba(255, 168, 96, 0.2), transparent 72%);
+  }
+
+  /* light blobs */
+  .blob-1 {
+    width: 58vw;
+    height: 58vw;
+    top: -26%;
+    left: -10%;
+    filter: blur(120px);
+    background: radial-gradient(circle, rgba(80, 110, 255, 0.25), transparent 72%);
+    animation: drift-1 44s ease-in-out infinite;
+  }
+  .blob-2 {
+    width: 48vw;
+    height: 48vw;
+    top: -22%;
+    right: -8%;
+    filter: blur(108px);
+    background: radial-gradient(circle, rgba(255, 160, 90, 0.2), transparent 72%);
+    animation: drift-2 50s ease-in-out infinite;
+  }
+  .blob-3 {
+    width: 44vw;
+    height: 44vw;
+    top: -8%;
+    left: 28%;
+    filter: blur(124px);
+    background: radial-gradient(circle, rgba(120, 95, 255, 0.2), transparent 72%);
+    animation: drift-3 46s ease-in-out infinite;
+  }
+
+  /* dark tune */
+  :global(.dark) .aurora-glow {
+    opacity: 0.5;
+  }
+  :global(.dark) .glow-left {
+    background: radial-gradient(circle, rgba(45, 82, 210, 0.42), transparent 72%);
+  }
+  :global(.dark) .glow-center {
+    background: radial-gradient(circle, rgba(67, 118, 220, 0.3), transparent 72%);
+  }
+  :global(.dark) .glow-right {
+    background: radial-gradient(circle, rgba(175, 110, 70, 0.24), transparent 72%);
+  }
+  :global(.dark) .blob-1 {
+    background: radial-gradient(circle, rgba(67, 56, 202, 0.34), transparent 72%);
+  }
+  :global(.dark) .blob-2 {
+    background: radial-gradient(circle, rgba(176, 107, 60, 0.28), transparent 72%);
+  }
+  :global(.dark) .blob-3 {
+    background: radial-gradient(circle, rgba(100, 68, 210, 0.3), transparent 72%);
+  }
+
+  /* soft movement */
+  @keyframes drift-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(4vw, 4vh) scale(1.04); }
+    66% { transform: translate(-3vw, 7vh) scale(0.97); }
+  }
+  @keyframes drift-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    40% { transform: translate(-6vw, 5vh) scale(1.03); }
+    75% { transform: translate(2vw, -2vh) scale(0.97); }
+  }
+  @keyframes drift-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    30% { transform: translate(5vw, -4vh) scale(1.04); }
+    70% { transform: translate(-2vw, 3vh) scale(0.96); }
+  }
+
+  .aurora-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 70% at 50% -10%, transparent 35%, rgba(0, 0, 0, 0.12) 100%);
+  }
+  :global(.dark) .aurora-vignette {
+    background:
+      radial-gradient(120% 70% at 50% -10%, transparent 30%, rgba(0, 0, 0, 0.24) 100%);
+  }
+
+  /* transparent top -> opaque lower section */
+  .aurora-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 34%,
+      hsl(210 33% 99% / 0.35) 48%,
+      hsl(210 33% 99% / 0.82) 64%,
+      hsl(210 33% 99% / 1) 80%
+    );
+    pointer-events: none;
+  }
+  :global(.dark) .aurora-fade {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 34%,
+      hsl(240 20.54% 5.2% / 0.35) 48%,
+      hsl(240 20.54% 5.2% / 0.82) 64%,
+      hsl(240 20.54% 5.2% / 1) 80%
+    );
+  }
+
+  @media (max-width: 768px) {
+    .aurora-glow,
+    .aurora-blob {
+      filter: blur(84px);
     }
-    33% {
-      transform: translate(30px, -50px) scale(1.1);
+    .glow-left,
+    .blob-1 { width: 90vw; height: 90vw; }
+    .glow-right,
+    .blob-2 { width: 76vw; height: 76vw; }
+    .glow-center,
+    .blob-3 { width: 68vw; height: 68vw; }
+    .aurora-fade {
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 28%,
+        hsl(210 33% 99% / 0.46) 44%,
+        hsl(210 33% 99% / 0.86) 60%,
+        hsl(210 33% 99% / 1) 76%
+      );
     }
-    66% {
-      transform: translate(-20px, 20px) scale(0.9);
-    }
-    100% {
-      transform: translate(0px, 0px) scale(1);
+    :global(.dark) .aurora-fade {
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 28%,
+        hsl(240 20.54% 5.2% / 0.46) 44%,
+        hsl(240 20.54% 5.2% / 0.86) 60%,
+        hsl(240 20.54% 5.2% / 1) 76%
+      );
     }
   }
-  
-  .animate-blob {
-    animation: blob 7s infinite;
-  }
-  
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-  
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
-  
-  .animate-spin-slow {
-    animation: spin 8s linear infinite;
-  }
-  
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  /* 正方形旋转动画 */
-  @keyframes square-rotate {
-    0% {
-      transform: rotate(45deg) scale(1);
-    }
-    25% {
-      transform: rotate(135deg) scale(1.05);
-    }
-    50% {
-      transform: rotate(225deg) scale(0.95);
-    }
-    75% {
-      transform: rotate(315deg) scale(1.02);
-    }
-    100% {
-      transform: rotate(405deg) scale(1);
-    }
-  }
-  
-  .animate-square-rotate {
-    animation: square-rotate 12s ease-in-out infinite;
-  }
-  
-  /* 圆形轻微移动动画 */
-  @keyframes circle-float {
-    0% {
-      transform: translateY(0px) scale(1);
-    }
-    25% {
-      transform: translateY(-8px) scale(1.02);
-    }
-    50% {
-      transform: translateY(-15px) scale(0.98);
-    }
-    75% {
-      transform: translateY(-8px) scale(1.01);
-    }
-    100% {
-      transform: translateY(0px) scale(1);
-    }
-  }
-  
-  .animate-circle-float {
-    animation: circle-float 8s ease-in-out infinite;
-  }
-  
-  /* 粒子浮动动画 */
-  @keyframes particle-float {
-    0% {
-      transform: translateY(0px) scale(1);
-      opacity: 0.3;
-    }
-    25% {
-      transform: translateY(-10px) scale(1.1);
-      opacity: 0.6;
-    }
-    50% {
-      transform: translateY(-20px) scale(0.9);
-      opacity: 0.4;
-    }
-    75% {
-      transform: translateY(-10px) scale(1.05);
-      opacity: 0.7;
-    }
-    100% {
-      transform: translateY(0px) scale(1);
-      opacity: 0.3;
-    }
-  }
-  
-  .animate-particle-float {
-    animation: particle-float 6s ease-in-out infinite;
-  }
-  
-  /* 为不同粒子添加不同的动画延迟和持续时间 */
-  .animate-particle-float:nth-child(odd) {
-    animation-duration: 8s;
-  }
-  
-  .animate-particle-float:nth-child(even) {
-    animation-duration: 5s;
-  }
-  
-  .animate-particle-float:nth-child(3n) {
-    animation-duration: 7s;
+
+  @media (prefers-reduced-motion) {
+    .aurora-blob { animation: none !important; }
   }
 </style>
